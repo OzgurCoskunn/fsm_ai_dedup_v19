@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ai_dedup_v19" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ai.dedup.v19</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[1]" position="before">
+                <block title="FSM AI Dedup (OpenRouter)" id="ai_dedup_block">
+                    <setting id="ai_dedup_enabled"
+                             string="AI Dedup Etkin"
+                             help="Acildiginda partner eslestirmede AI fallback devreye girer.">
+                        <field name="fsm_ai_dedup_enabled"/>
+                    </setting>
+                    <setting id="ai_dedup_api_key"
+                             string="OpenRouter API Key"
+                             help="OpenRouter hesabinizdan uretilen API anahtari">
+                        <field name="fsm_ai_dedup_api_key" password="True"/>
+                    </setting>
+                    <setting id="ai_dedup_model"
+                             string="OpenRouter Model"
+                             help="openai/gpt-4o-mini, anthropic/claude-haiku-4-5, google/gemini-2.5-flash">
+                        <field name="fsm_ai_dedup_model"/>
+                    </setting>
+                    <setting id="ai_dedup_threshold"
+                             string="Eslesme Guven Esigi (%)"
+                             help="90+ onerilir; dusuk degerler yanlis pozitif arttirir">
+                        <field name="fsm_ai_dedup_threshold"/>
+                    </setting>
+                    <setting id="ai_dedup_timeout"
+                             string="API Timeout (saniye)">
+                        <field name="fsm_ai_dedup_timeout"/>
+                    </setting>
+                    <setting id="ai_dedup_max_candidates"
+                             string="Maks. Aday Sayisi"
+                             help="LLM cagrisinda gonderilecek en fazla aday sayisi">
+                        <field name="fsm_ai_dedup_max_candidates"/>
+                    </setting>
+                    <setting id="ai_dedup_test"
+                             string="Baglanti Testi">
+                        <button name="action_test_openrouter_connection"
+                                string="OpenRouter Baglantisini Test Et"
+                                type="object"
+                                class="btn-primary"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

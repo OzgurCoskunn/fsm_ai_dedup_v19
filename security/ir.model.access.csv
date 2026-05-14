@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_dedup_log_admin,ai.dedup.log admin,model_ai_dedup_log,base.group_system,1,1,1,1
+access_ai_dedup_log_user,ai.dedup.log user,model_ai_dedup_log,base.group_user,1,0,0,0
+access_ai_dedup_test_wizard,ai.dedup.test.wizard,model_ai_dedup_test_wizard,base.group_system,1,1,1,1
