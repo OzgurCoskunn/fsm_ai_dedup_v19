@@ -22,8 +22,8 @@ from odoo.addons.fsm_api.response import (
 _logger = logging.getLogger(__name__)
 
 
-class FsmApiSpec(models.Model):
-    _inherit = 'fsm.api.spec'
+class FsmApiSpecService(models.Model):
+    _inherit = 'fsm.api.spec.service'
 
     # ------------------------------------------------------------------
     # AI HOOK -- her partner uretim noktasinda kullanilir
