@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_dedup_log_tree" model="ir.ui.view">
+        <field name="name">partner.dedup.log.list</field>
+        <field name="model">partner.dedup.log</field>
+        <field name="arch" type="xml">
+            <list string="Partner Dedup Log" default_order="create_date desc">
+                <field name="create_date"/>
+                <field name="context_label"/>
+                <field name="incoming_street"/>
+                <field name="incoming_district"/>
+                <field name="incoming_town"/>
+                <field name="candidate_count"/>
+                <field name="matched_partner_id"/>
+                <field name="confidence"/>
+                <field name="decision"/>
+                <field name="model_used"/>
+                <field name="latency_ms"/>
+                <field name="tokens_in"/>
+                <field name="tokens_out"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_partner_dedup_log_form" model="ir.ui.view">
+        <field name="name">partner.dedup.log.form</field>
+        <field name="model">partner.dedup.log</field>
+        <field name="arch" type="xml">
+            <form string="Partner Dedup Log">
+                <sheet>
+                    <group>
+                        <group string="Baglam">
+                            <field name="create_date"/>
+                            <field name="context_label"/>
+                            <field name="candidate_count"/>
+                        </group>
+                        <group string="Karar">
+                            <field name="decision"/>
+                            <field name="confidence"/>
+                            <field name="matched_partner_id"/>
+                        </group>
+                    </group>
+                    <group string="Gelen Adres (KVKK: sadece adres)">
+                        <field name="incoming_street"/>
+                        <field name="incoming_district"/>
+                        <field name="incoming_town"/>
+                    </group>
+                    <group string="Telemetri">
+                        <field name="model_used"/>
+                        <field name="latency_ms"/>
+                        <field name="tokens_in"/>
+                        <field name="tokens_out"/>
+                    </group>
+                    <notebook>
+                        <page string="Adaylar">
+                            <field name="candidate_partner_ids" widget="many2many" readonly="1"/>
+                        </page>
+                        <page string="Sebep">
+                            <field name="reason" widget="text"/>
+                        </page>
+                        <page string="LLM Raw Response">
+                            <field name="raw_response" widget="text"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_partner_dedup_log" model="ir.actions.act_window">
+        <field name="name">Dedup Loglari</field>
+        <field name="res_model">partner.dedup.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_partner_dedup_root" name="AI Dedup" sequence="100"/>
+    <menuitem id="menu_partner_dedup_log"
+              name="Loglar"
+              parent="menu_partner_dedup_root"
+              action="action_partner_dedup_log"
+              sequence="10"/>
+</odoo>

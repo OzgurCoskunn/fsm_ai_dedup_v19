@@ -7,8 +7,10 @@ class ResConfigSettings(models.TransientModel):
 
     fsm_ai_dedup_enabled = fields.Boolean(
         string='AI Dedup Etkin',
-        config_parameter='fsm_ai_dedup.enabled',
+        config_parameter='fsm_ai_dedup.ai_enabled',
         default=False,
+        help='Kapaliyken AI cagrisi yapilmaz; sistem normal akisla devam eder. '
+             'Acikken partner create eden API metodlari adayi AI ile dogrular.',
     )
     fsm_ai_dedup_api_key = fields.Char(
         string='OpenRouter API Key',
@@ -17,24 +19,15 @@ class ResConfigSettings(models.TransientModel):
     fsm_ai_dedup_model = fields.Char(
         string='OpenRouter Model',
         config_parameter='fsm_ai_dedup.openrouter_model',
-        default='openai/gpt-4o-mini',
-        help='Ornek: openai/gpt-4o-mini, anthropic/claude-haiku-4-5, '
-             'google/gemini-2.5-flash, meta-llama/llama-3.3-70b-instruct',
+        default='anthropic/claude-haiku-4-5',
+        help='Ornek: anthropic/claude-haiku-4-5 (onerilen), '
+             'openai/gpt-4o-mini, google/gemini-2.5-flash',
     )
-    fsm_ai_dedup_threshold = fields.Integer(
-        string='Eslesme Guven Esigi (%)',
-        config_parameter='fsm_ai_dedup.confidence_threshold',
-        default=90,
-    )
-    fsm_ai_dedup_timeout = fields.Integer(
-        string='API Timeout (saniye)',
-        config_parameter='fsm_ai_dedup.timeout',
-        default=15,
-    )
-    fsm_ai_dedup_max_candidates = fields.Integer(
-        string='Maks. Aday Sayisi',
-        config_parameter='fsm_ai_dedup.max_candidates',
-        default=20,
+    fsm_ai_dedup_timeout_ms = fields.Integer(
+        string='API Timeout (ms)',
+        config_parameter='fsm_ai_dedup.timeout_ms',
+        default=800,
+        help='Bu sureden uzun cevaplar timeout sayilir ve yeni kayit acilir.',
     )
 
     def action_test_openrouter_connection(self):

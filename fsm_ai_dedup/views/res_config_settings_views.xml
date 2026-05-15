@@ -9,7 +9,7 @@
                 <block title="FSM AI Dedup (OpenRouter)" id="ai_dedup_block">
                     <setting id="ai_dedup_enabled"
                              string="AI Dedup Etkin"
-                             help="Acildiginda partner eslestirmede AI fallback devreye girer.">
+                             help="Kapaliyken AI cagrisi yapilmaz; sistem normal akisla devam eder. Acikken partner create eden API metodlari adayi AI ile dogrular.">
                         <field name="fsm_ai_dedup_enabled"/>
                     </setting>
                     <setting id="ai_dedup_api_key"
@@ -19,22 +19,13 @@
                     </setting>
                     <setting id="ai_dedup_model"
                              string="OpenRouter Model"
-                             help="openai/gpt-4o-mini, anthropic/claude-haiku-4-5, google/gemini-2.5-flash">
+                             help="anthropic/claude-haiku-4-5 (onerilen), openai/gpt-4o-mini, google/gemini-2.5-flash">
                         <field name="fsm_ai_dedup_model"/>
                     </setting>
-                    <setting id="ai_dedup_threshold"
-                             string="Eslesme Guven Esigi (%)"
-                             help="90+ onerilir; dusuk degerler yanlis pozitif arttirir">
-                        <field name="fsm_ai_dedup_threshold"/>
-                    </setting>
                     <setting id="ai_dedup_timeout"
-                             string="API Timeout (saniye)">
-                        <field name="fsm_ai_dedup_timeout"/>
-                    </setting>
-                    <setting id="ai_dedup_max_candidates"
-                             string="Maks. Aday Sayisi"
-                             help="LLM cagrisinda gonderilecek en fazla aday sayisi">
-                        <field name="fsm_ai_dedup_max_candidates"/>
+                             string="API Timeout (ms)"
+                             help="Bu sureden uzun cevaplar timeout sayilir ve yeni kayit acilir.">
+                        <field name="fsm_ai_dedup_timeout_ms"/>
                     </setting>
                     <setting id="ai_dedup_test"
                              string="Baglanti Testi">
